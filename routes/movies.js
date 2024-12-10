@@ -72,6 +72,7 @@ router.put("/:id", async (req, res) =>{
     }
 });
 
+//delete movie by id
 router.delete("/:id", async (req, res) =>{
     try {
         result = await Movie.deleteOne({ _id: req.params.id });

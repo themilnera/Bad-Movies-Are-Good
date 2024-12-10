@@ -5,17 +5,33 @@
     font-family:Georgia, 'Times New Roman', Times, serif
 }
 
+#title-h1{
+    text-shadow: 0px 1px 1px white;
+}
+
+#login-button{
+    float: right;
+    border-radius: 3px;
+    background-color: antiquewhite;
+    color: black;
+    width: 4vw;
+    height: 2vw;
+    margin-right: 1vw;
+}
+
 #main-div{
     text-align: center;
     border-style: solid;
     border-color: white;
 }
 
+
 #search-input{
     width: 30%;
     height: 1.6em;
     padding: .5vw;
     margin-top: 1vw;
+    margin-left: 7vw;
 }
 
 #search-button{

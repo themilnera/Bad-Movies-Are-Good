@@ -7,6 +7,8 @@ let db;
 
 app.use(express.json());
 app.use("/movies", movieRoutes);
+
+//lets you access /public folder from the browser, ie /index.html
 app.use(express.static("public"));
 
 async function start(){
