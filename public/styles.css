@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    background-color: black;
+    color: white;
+    font-family:Georgia, 'Times New Roman', Times, serif
+}
+
+#main-div{
+    text-align: center;
+    border-style: solid;
+    border-color: white;
+}
+
+#search-input{
+    width: 30%;
+    height: 1.6em;
+    padding: .5vw;
+    margin-top: 1vw;
+}
+
+#search-button{
+    width: 5%;
+    height: 2vw;
+    margin-left: .5vw;
+    margin-top: .5vw;
+    border-radius: 3px;
+    font-size: 20px;
+}
+
+#content-div{
+    padding: 20px;
+}
