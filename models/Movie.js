@@ -17,6 +17,12 @@ const MovieSchema = new mongoose.Schema({
     description: {
         type: String,
     },
+    imageURL: {
+        type: String,
+    },
+    synopsis: {
+        type: String,
+    },
 });
 
 module.exports = mongoose.model("Movie", MovieSchema);
