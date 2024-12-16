@@ -3,12 +3,17 @@ const express = require("express");
 const app = express();
 const Database = require("./db/connect.js");
 const movieRoutes = require("./routes/movies.js");
+const userRoutes = require("./routes/users.js");
+const cookieParser = require("cookie-parser");
 const path = require("path");
 
 let db;
 
 app.use(express.json());
+app.use(cookieParser());
+
 app.use("/movies", movieRoutes);
+app.use("/users", userRoutes);
 
 //lets you access /public folder from the browser, ie /index.html
 app.use(express.static(path.join(__dirname, "public")));

@@ -23,6 +23,9 @@ a{
     margin-right: 2vw;
     margin-top: 1vw;
 }
+#home-button{
+    float: left;
+}
 
 #main-div{
     text-align: center;

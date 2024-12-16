@@ -43,7 +43,11 @@ router.get("/search", async(req, res) => {
     try {
         //example query: /search?title=Room&genre=Drama
         const {title, genre, rating} = req.query;
+        let page = parseInt(req.query.page) || 1; // Default to page 1
+        let limit = parseInt(req.query.limit) || 3; // Default 10 results per page
+        let skip = (page-1)*limit;
         const filter = {};
+        
 
         //doing regex here so that partial titles will be caught
         if(title){ 
@@ -61,7 +65,25 @@ router.get("/search", async(req, res) => {
 
         const movies = await Movie.find(filter);
         let itemsHTML = "";
-        for(let i = 0; i < movies.length; i++){
+
+        //if there are less movies then page allows, don't keep trying to display them
+        let mi;
+        if(movies.length-skip < limit*page){
+            mi = movies.length-skip;
+        }
+        else{
+            mi = limit*page;
+        }
+
+        paginationDiv = 
+                `
+                <div class="pagination-buttons">
+                    <button id="back-page">back</button>
+                    <button id="forward-page">forward</button>
+                </div>
+                `;
+
+        for(let i = skip; i < mi; i++){
             itemsHTML += `
             <a href="/movies/${movies[i]._id}" id="page-link${i}"  class="item-container"><span id="item${i}"> 
                 <div id="title${i}" class="title">${escapeHTML(movies[i].title)}</div>
@@ -71,8 +93,8 @@ router.get("/search", async(req, res) => {
                 <div id="description${i}" class="description">${escapeHTML(movies[i].description)}</div>
             </span></a>`;
         }
-
-        res.send(`
+        
+        let sendResponse = `
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -92,12 +114,13 @@ router.get("/search", async(req, res) => {
                 <button id="search-button">Search</button>
             </div>
 
-            <div class="search-results">
-                ${itemsHTML}
-            </div>
+            <div class="search-results">${itemsHTML}</div>
+            ${paginationDiv}
         </div> 
         
-        <script src="/scripts.js"></script>`);
+        <script src="/scripts.js"></script>`;
+
+        res.send(sendResponse);
 
     } catch (error) {
         res.status(500).send("error occurred: "+error);
