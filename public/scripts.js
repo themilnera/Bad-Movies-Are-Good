@@ -48,8 +48,6 @@ document.querySelector("#forward-page").addEventListener("click", (e) =>{
     page+= 1;
     let newUrl = url.replace(grabPage[0], `page=${[page]}`);
     document.location.href = newUrl;
-
-    
 });
 
 document.addEventListener("keydown", (e) => {
